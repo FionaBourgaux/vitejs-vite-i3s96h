@@ -1,18 +1,5 @@
-<template>
-  <li class="nav-item">
-    <a
-      class="nav-link"
-      :class="{ active: isActive, disabled: isDisabled }"
-      aria-current="page"
-      :href="url"
-      :disabled="isDisabled"
-      :aria-disabled="isDisabled"
-      >{{ text }}</a
-    >
-  </li>
-</template>
-
 <script setup>
+import { RouterLink } from 'vue-router';
 defineProps({
   url: {
     type: String,
@@ -23,11 +10,6 @@ defineProps({
     type: String,
     required: true,
   },
-  isActive: {
-    type: Boolean,
-    required: false,
-    default: false,
-  },
   isDisabled: {
     type: Boolean,
     required: false,
@@ -35,3 +17,18 @@ defineProps({
   },
 });
 </script>
+
+<template>
+  <li class="nav-item">
+    <RouterLink
+      class="nav-link"
+      :class="{ disabled: isDisabled }"
+      activeClass="active"
+      aria-current="page"
+      :to="url"
+      :disabled="isDisabled"
+      :aria-disabled="isDisabled"
+      >{{ text }}</RouterLink
+    >
+  </li>
+</template>
